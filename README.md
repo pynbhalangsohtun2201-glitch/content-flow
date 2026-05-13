@@ -1,6 +1,6 @@
 # Content Flow - Modern Library Digital Experience Platform
 
-Content Flow is a premium, editorial-style landing page for a digital content management and delivery platform designed specifically for libraries and institutions.
+A high-fidelity, research-driven landing page for a modern digital content management platform. Built with a focus on mobile-first UX, precision design-to-code implementation, and interactive storytelling.
 
 ## 🚀 Features
 
