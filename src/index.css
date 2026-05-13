@@ -1,0 +1,36 @@
+/* LINE 1 - Always start with imports */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
+
+/* LINE 2 - Then your Tailwind import */
+@import "tailwindcss";
+
+/* LINE 3+ - Then your theme and custom utilities */
+@theme {
+  --font-outfit: "Outfit", sans-serif;
+  --color-brand-dark: #2f3e46;
+}
+
+/* Global Font Override */
+@layer base {
+  html, body {
+    font-family: var(--font-outfit);
+  }
+}
+
+@utility bg-hero-gradient {
+  background: linear-gradient(
+    180deg,
+    #fafaf8 29.99%,
+    #84a98c 56.08%,
+    #52796f 68.52%,
+    #354f52 83.91%,
+    #2f3e46 96.63%
+  );
+}
+
+@utility tracking-hero {
+  letter-spacing: -0.019em;
+}
+@utility font-outfit {
+  font-family: "Outfit", sans-serif;
+}
