@@ -1,16 +1,44 @@
-# React + Vite
+# Content Flow - Modern Library Digital Experience Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Content Flow is a premium, editorial-style landing page for a digital content management and delivery platform designed specifically for libraries and institutions.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Dynamic Visuals**: High-end animations using Framer Motion.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop experiences.
+- **Glassmorphism UI**: Modern aesthetic with backdrop blurs and subtle gradients.
+- **Interactive Components**:
+  - **Solutions Showcase**: Tabbed interface for exploring platform capabilities.
+  - **Empowers Slider**: Immersive carousel highlighting community impact.
+  - **Infinite Testimonials**: Smoothly looping feedback from library professionals and users.
+  - **Animated Flow Diagram**: Custom SVG animation illustrating the data pipeline.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Typography**: Outfit (via Google Fonts)
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/pynbhalangsohtun2201-glitch/content-flow.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 📄 License
+
+This project is licensed under the MIT License.
