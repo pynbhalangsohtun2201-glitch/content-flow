@@ -13,41 +13,41 @@ const SolutionsShowcase = () => {
   const solutions = [
     {
       id: 0,
-      name: "Boundless",
+      name: "Media",
       image: img1,
-      title: "Boundless: Deliver Digital Content",
+      title: "Media: Deliver Digital Content",
       description:
         "Cloud-based platform that stores, manages, and delivers digital content (ebooks, audiobooks, videos, journals) to patrons anytime, anywhere.",
     },
     {
       id: 1,
-      name: "TS360",
+      name: "Technical",
       image: img2,
-      title: "TS360: Advanced Technical Services",
+      title: "Technical: Streamline Collection Management",
       description:
         "Streamline your collection management with comprehensive tools for selection, acquisition, and cataloging in one unified interface.",
     },
     {
       id: 2,
-      name: "ePopUp",
+      name: "Access",
       image: img3,
-      title: "ePopUp: Instant Digital Access",
+      title: "Access: Enable Instant Digital Access",
       description:
         "Engage your community with localized digital collections that can be accessed instantly via QR codes or mobile links.",
     },
     {
       id: 3,
-      name: "Content Café",
+      name: "Catalog",
       image: img4,
-      title: "Content Café: Enrich Your Catalog",
+      title: "Catalog: Enrich Your Library Catalog",
       description:
         "Transform your library catalog with high-quality jacket images, reviews, and summaries to create a more engaging browsing experience.",
     },
     {
       id: 4,
-      name: "CollectConnect",
+      name: "Analytics",
       image: img5,
-      title: "CollectConnect: Smart Insights",
+      title: "Analytics: Gain Smart Collection Insights",
       description:
         "Powerful analytics to help you understand community needs and optimize your digital collection performance.",
     },
@@ -78,14 +78,14 @@ const SolutionsShowcase = () => {
 
       {/* 2. MAIN CONTAINER */}
       <motion.div
-        className="w-full max-w-[1180px] min-h-[600px] md:h-[720px] bg-[#F3F3F3] rounded-[30px] flex flex-col items-center pt-8 overflow-hidden border border-slate-200/50 shadow-sm mx-4"
+        className="w-full lg:max-w-full min-h-[600px] lg:min-h-screen bg-[#F3F3F3] rounded-[30px] lg:rounded-none flex flex-col items-center lg:justify-center pt-8 lg:pt-0 overflow-hidden border border-slate-200/50 shadow-sm mx-4 lg:mx-0"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
         {/* IMAGE CONTAINERS AREA */}
-        <div 
+        <div
           className="w-full flex gap-4 mb-10 overflow-x-auto px-6 md:px-0 md:justify-center no-scrollbar"
           role="tablist"
           aria-label="Solution Categories"

@@ -2,7 +2,7 @@ import React from "react";
 
 import playStore from "../assets/Google_Play_Store_badge_EN 1.svg";
 import appStore from "../assets/Download_on_the_App_Store_Badge 1.svg";
-import logoWhite from "../assets/logo-white.svg";
+import logoWhite from "../assets/logo white.svg";
 
 const Footer = () => {
   const footerLinks = {
@@ -62,7 +62,9 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-28">
             {Object.entries(footerLinks).map(([title, links], idx) => (
               <div key={idx} className="min-w-[120px]">
-                <h4 className="text-[20px] md:text-[24px] font-medium mb-6 md:mb-8">{title}</h4>
+                <h4 className="text-[20px] md:text-[24px] font-medium mb-6 md:mb-8">
+                  {title}
+                </h4>
                 <ul className="flex flex-col gap-3 md:gap-4">
                   {links.map((link) => (
                     <li key={link}>
