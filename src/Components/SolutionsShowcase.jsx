@@ -13,41 +13,41 @@ const SolutionsShowcase = () => {
   const solutions = [
     {
       id: 0,
-      name: "Media",
+      name: "Boundless",
       image: img1,
-      title: "Media: Deliver Digital Content",
+      title: "Boundless: Deliver Digital Content",
       description:
         "Cloud-based platform that stores, manages, and delivers digital content (ebooks, audiobooks, videos, journals) to patrons anytime, anywhere.",
     },
     {
       id: 1,
-      name: "Technical",
+      name: "TS360",
       image: img2,
-      title: "Technical: Streamline Collection Management",
+      title: "TS360: Advanced Technical Services",
       description:
         "Streamline your collection management with comprehensive tools for selection, acquisition, and cataloging in one unified interface.",
     },
     {
       id: 2,
-      name: "Access",
+      name: "ePopUp",
       image: img3,
-      title: "Access: Enable Instant Digital Access",
+      title: "ePopUp: Instant Digital Access",
       description:
         "Engage your community with localized digital collections that can be accessed instantly via QR codes or mobile links.",
     },
     {
       id: 3,
-      name: "Catalog",
+      name: "Content Café",
       image: img4,
-      title: "Catalog: Enrich Your Library Catalog",
+      title: "Content Café: Enrich Your Catalog",
       description:
         "Transform your library catalog with high-quality jacket images, reviews, and summaries to create a more engaging browsing experience.",
     },
     {
       id: 4,
-      name: "Analytics",
+      name: "CollectConnect",
       image: img5,
-      title: "Analytics: Gain Smart Collection Insights",
+      title: "CollectConnect: Smart Insights",
       description:
         "Powerful analytics to help you understand community needs and optimize your digital collection performance.",
     },
@@ -78,7 +78,7 @@ const SolutionsShowcase = () => {
 
       {/* 2. MAIN CONTAINER */}
       <motion.div
-        className="w-full lg:max-w-full min-h-[600px] lg:min-h-screen bg-[#F3F3F3] rounded-[30px] lg:rounded-none flex flex-col items-center lg:justify-center pt-8 lg:pt-0 overflow-hidden border border-slate-200/50 shadow-sm mx-4 lg:mx-0"
+        className="w-full max-w-[1180px] min-h-[600px] md:h-[720px] bg-[#F3F3F3] rounded-[30px] flex flex-col items-center pt-8 overflow-hidden border border-slate-200/50 shadow-sm mx-4"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
