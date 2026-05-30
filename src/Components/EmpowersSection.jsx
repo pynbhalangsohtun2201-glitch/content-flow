@@ -22,7 +22,7 @@ const EmpowerSlider = () => {
     };
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("scroll", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const slides = [
@@ -59,13 +59,13 @@ const EmpowerSlider = () => {
   };
 
   return (
-    <section className="w-full min-h-[85vh] py-32 flex flex-col items-center bg-white font-['Outfit'] overflow-hidden">
-      {/* Header Area (Reduced margins) */}
-      <div className="text-center mb-10 px-4">
-        <h2 className="text-[38px] font-semibold text-[#1A1A1A] mb-3 tracking-tight">
+    <section className="w-full md:min-h-[85vh] py-12 md:py-32 flex flex-col items-center bg-white font-['Outfit'] overflow-hidden">
+      {/* Header Area */}
+      <div className="text-center mb-6 md:mb-10 px-4">
+        <h2 className="text-[32px] md:text-[38px] font-semibold text-[#1A1A1A] mb-3 tracking-tight leading-[1.15] text-balance">
           A Platform That Empowers Everyone
         </h2>
-        <p className="text-[oklch(55.4%_0.046_257.417)] text-[18px] font-medium max-w-2xl mx-auto">
+        <p className="text-[oklch(55.4%_0.046_257.417)] text-[16px] md:text-[18px] font-medium max-w-2xl mx-auto text-balance">
           From institutions to individual readers, one platform serves everyone
         </p>
       </div>
@@ -86,7 +86,7 @@ const EmpowerSlider = () => {
           style={{
             gap: `${gap}px`,
             paddingLeft: `calc(50% - ${cardWidth / 2}px)`,
-            paddingRight: `calc(50% - ${cardWidth / 2}px)`,
+            paddingRight: `calc(50% - ${cardWidth / 2}px)`
           }}
           animate={{ x: -(currentIndex * (cardWidth + gap)) }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -96,48 +96,26 @@ const EmpowerSlider = () => {
               key={index}
               role="tabpanel"
               aria-hidden={currentIndex !== index}
-              className="flex-shrink-0 flex flex-col md:flex-row items-center justify-between px-8 md:px-16 pt-10 md:pt-10 transition-all duration-500 relative overflow-hidden border border-slate-200/50"
+              className="flex-shrink-0 flex flex-col md:flex-row items-center justify-between px-5 md:px-16 pt-6 md:pt-10 transition-all duration-500 relative overflow-hidden border border-slate-200/50"
               style={{
                 width: `${cardWidth}px`,
                 height: window.innerWidth < 768 ? "auto" : "480px",
-                minHeight: window.innerWidth < 768 ? "600px" : "480px",
                 borderRadius: "24px",
-                paddingBottom: window.innerWidth < 768 ? "40px" : "0",
+                paddingBottom: "0px"
               }}
             >
               {/* SVG Background Layer */}
-              <div
-                className="absolute inset-0 z-0 pointer-events-none"
-                aria-hidden="true"
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 1212 480"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="none"
-                >
-                  <rect
-                    width="1212"
-                    height="480"
-                    rx="20"
-                    fill="url(#paint0_linear_2335_199)"
-                  />
+              <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+                <svg width="100%" height="100%" viewBox="0 0 1212 480" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                  <rect width="1212" height="480" rx="20" fill="url(#paint0_linear_2335_199)" />
                   <defs>
-                    <linearGradient
-                      id="paint0_linear_2335_199"
-                      x1="1171.69"
-                      y1="22.3907"
-                      x2="71.8828"
-                      y2="471.961"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#FAFAF8" />
-                      <stop offset="0.372609" stopColor="#84A98C" />
-                      <stop offset="0.550307" stopColor="#52796F" />
-                      <stop offset="0.770209" stopColor="#354F52" />
-                      <stop offset="0.951923" stopColor="#2F3E46" />
+                    {/* Rebalanced stops for clean dark-teal contrast distribution behind mobile typography */}
+                    <linearGradient id="paint0_linear_2335_199" x1="50%" y1="0%" x2="50%" y2="100%" gradientUnits="objectBoundingBox">
+                      <stop offset="0%" stopColor="#2F3E46" />
+                      <stop offset="30%" stopColor="#354F52" />
+                      <stop offset="65%" stopColor="#52796F" />
+                      <stop offset="85%" stopColor="#84A98C" />
+                      <stop offset="100%" stopColor="#FAFAF8" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -146,29 +124,28 @@ const EmpowerSlider = () => {
               </div>
 
               {/* Left Content Area */}
-              <div className="w-full md:w-[500px] flex flex-col gap-5 text-white pb-10 relative z-10 text-left">
-                <h3 className="text-[28px] md:text-[32px] font-medium leading-tight">
+              <div className="w-full md:w-[500px] flex flex-col gap-3 md:gap-5 text-white pb-4 md:pb-10 relative z-10 text-left">
+                <h3 className="text-[25px] md:text-[32px] font-medium leading-tight">
                   {slide.title}
                 </h3>
-                <p className="text-[16px] md:text-[17px] opacity-80 leading-relaxed font-light max-w-sm">
+                <p className="text-[15px] md:text-[17px] opacity-90 leading-relaxed font-light max-w-sm">
                   {slide.description}
                 </p>
                 <button
-                  className="bg-white text-[#354F52] rounded-xl font-medium transition-all hover:bg-gray-50 active:scale-95 flex items-center justify-center mt-6"
+                  className="bg-white text-[#354F52] rounded-xl font-bold transition-all hover:bg-gray-50 active:scale-95 flex items-center justify-center mt-3 md:mt-6 shadow-sm"
                   style={{
                     width: "190px",
-                    height: "46px",
-                    fontSize: "14px",
-                    fontWeight: "500",
+                    height: "42px",
+                    fontSize: "13.5px",
                   }}
                 >
                   Explore the Full Experience
                 </button>
               </div>
 
-              {/* Right Side - Image Content (Scaled down) */}
+              {/* Right Side - Image Content */}
               <div
-                className="w-full md:w-[480px] h-[250px] md:h-[440px] self-center md:self-end overflow-hidden relative z-10 mt-8 md:mt-0"
+                className="w-full md:w-[480px] h-[185px] md:h-[440px] self-center md:self-end overflow-hidden relative z-10 mt-4 md:mt-0 shadow-inner"
                 style={{
                   borderTopLeftRadius: "16px",
                   borderTopRightRadius: "16px",
@@ -177,7 +154,7 @@ const EmpowerSlider = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
@@ -185,27 +162,25 @@ const EmpowerSlider = () => {
         </motion.div>
       </motion.div>
 
-      {/* Navigation Controls (Centered) */}
-      <div className="w-full max-w-[1212px] flex justify-center gap-4 mt-8 px-4">
+      {/* Navigation Controls (Perfectly visible inside viewport fold) */}
+      <div className="w-full max-w-[1212px] flex justify-center gap-4 mt-6 md:mt-8 px-4">
         <button
           onClick={handlePrev}
           disabled={currentIndex === 0}
-          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-            currentIndex === 0
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${currentIndex === 0
               ? "opacity-20 cursor-not-allowed bg-[#D9D9D9]"
               : "bg-[#D9D9D9] hover:bg-gray-300 active:scale-90"
-          }`}
+            }`}
         >
           <ArrowLeft size={20} className="text-black" />
         </button>
         <button
           onClick={handleNext}
           disabled={currentIndex === slides.length - 1}
-          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-            currentIndex === slides.length - 1
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${currentIndex === slides.length - 1
               ? "opacity-20 cursor-not-allowed bg-[#D9D9D9]"
               : "bg-[#D9D9D9] hover:bg-gray-300 active:scale-90"
-          }`}
+            }`}
         >
           <ArrowRight size={20} className="text-black" />
         </button>

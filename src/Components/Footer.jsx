@@ -24,9 +24,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative w-full min-h-[600px] md:h-[939px] flex flex-col justify-end font-['Outfit'] text-white overflow-hidden">
-      {/* 1. SVG Background Layer */}
-      <div className="absolute inset-0 -z-10" aria-hidden="true">
+    <footer className="relative w-full min-h-[600px] md:h-[939px] flex flex-col justify-end font-['Outfit'] text-white overflow-hidden bg-gradient-to-b from-white via-[#52796F] via-[percentage:25%] to-[#2F3E46] md:bg-none">
+
+      {/* 1. Desktop Only: SVG Background Layer (Remains completely untouched) */}
+      <div className="hidden md:block absolute inset-0 -z-10" aria-hidden="true">
         <svg
           width="100%"
           height="100%"
@@ -56,13 +57,14 @@ const Footer = () => {
       </div>
 
       {/* 2. Main Content Container */}
-      <div className="max-w-[1280px] mx-auto w-full px-6 pt-32 pb-20">
-        <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-28 mb-20 lg:mb-32">
+      <div className="max-w-[1280px] mx-auto w-full px-6 pt-24 md:pt-32 pb-16 md:pb-20 z-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-28 mb-16 lg:mb-32">
+
           {/* Link Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-28">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 lg:gap-28">
             {Object.entries(footerLinks).map(([title, links], idx) => (
               <div key={idx} className="min-w-[120px]">
-                <h4 className="text-[20px] md:text-[24px] font-medium mb-6 md:mb-8">
+                <h4 className="text-[18px] md:text-[24px] font-medium mb-4 md:mb-8 text-white drop-shadow-sm">
                   {title}
                 </h4>
                 <ul className="flex flex-col gap-3 md:gap-4">
@@ -70,7 +72,7 @@ const Footer = () => {
                     <li key={link}>
                       <a
                         href="#"
-                        className="text-[14px] md:text-[16px] font-regular opacity-80 hover:opacity-100 transition-opacity"
+                        className="text-[14px] md:text-[16px] font-regular text-white/90 hover:text-white transition-opacity"
                       >
                         {link}
                       </a>
@@ -82,7 +84,7 @@ const Footer = () => {
           </div>
 
           {/* App Store Badges */}
-          <div className="flex flex-row lg:flex-col items-center lg:items-end gap-5">
+          <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-4 md:gap-5 w-full lg:w-auto">
             <div className="cursor-pointer hover:scale-105 transition-transform active:scale-95">
               <img
                 src={playStore}
@@ -100,16 +102,16 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 3. Bottom Brand Bar (No Divider) */}
-        <div className="pt-10 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 md:gap-0">
+        {/* 3. Bottom Brand Bar */}
+        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 w-full text-left">
           <div className="flex items-center">
             <img
               src={logoWhite}
               alt="ContentFlow Logo"
-              className="w-40 md:w-50 h-10 md:h-14 object-contain"
+              className="w-36 md:w-50 h-8 md:h-14 object-contain"
             />
           </div>
-          <p className="text-[14px] md:text-[16px] font-regular opacity-80">
+          <p className="text-[13px] md:text-[16px] font-regular opacity-70">
             © 2026 ContentFlow. All rights reserved.
           </p>
         </div>

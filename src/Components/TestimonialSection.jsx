@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import hd1 from "../assets/Headshot/hd1.png";
@@ -10,8 +10,18 @@ import hd6 from "../assets/Headshot/hd6.png";
 
 const TestimonialSection = () => {
   const [isLibrary, setIsLibrary] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Content for both states
+  // Monitor screen width to dynamically compute accurate loop tracking variables
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize(); // Run initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const libraryReviews = [
     {
       name: "Sarah Jenkins",
@@ -59,56 +69,59 @@ const TestimonialSection = () => {
   ];
 
   const activeData = isLibrary ? libraryReviews : userReviews;
-  // Triple the data to ensure the screen is always filled during the loop
   const carouselData = [...activeData, ...activeData, ...activeData, ...activeData];
 
-  // Calculate the precise width of one set of items for a seamless loop
-  // Card (620px) + Gap (40px) = 660px per item. 3 items = 1980px.
-  const setWidth = (620 + 40) * 3;
+  // Dynamic values based on viewport configuration
+  const cardWidth = isMobile ? 310 : 620;
+  const gapWidth = isMobile ? 16 : 40;
+  const setWidth = (cardWidth + gapWidth) * 3;
 
   return (
-    <section className="w-full pt-24 pb-40 flex flex-col items-center font-['Outfit'] bg-[#FAFAF8] overflow-hidden">
-      {/* 1. Header - Forced 2-line split */}
-      <h2 className="text-[38px] font-semibold text-[#1A1A1A] mb-10 text-center max-w-4xl leading-[1.1] tracking-tight px-4">
-        Trusted by the world’s best storytellers <br /> 
+    <section className="w-full pt-12 pb-20 md:pt-24 md:pb-40 flex flex-col items-center font-['Outfit'] bg-[#FAFAF8] overflow-hidden">
+      {/* 1. Header Area - Optimized text metrics for mobile */}
+      <h2 className="text-[26px] md:text-[38px] font-semibold text-[#1A1A1A] mb-6 md:mb-10 text-center max-w-4xl leading-[1.2] md:leading-[1.1] tracking-tight px-5 text-balance">
+        Trusted by the world’s best storytellers <br className="hidden md:inline" />
         and the communities that share them.
       </h2>
 
-      {/* 2. Toggle Switch Area - Smooth Tween to Dark Green */}
-      <div className="flex items-center gap-5 mb-20">
+      {/* 2. Toggle Switch Area - Compressed spacing and cleaner sizing on mobile */}
+      <div className="flex items-center gap-4 md:gap-5 mb-10 md:mb-20">
         <motion.div
           onClick={() => setIsLibrary(!isLibrary)}
-          className="relative cursor-pointer flex items-center px-1.5"
+          className="relative cursor-pointer flex items-center px-1"
           animate={{ backgroundColor: isLibrary ? "#D9D9D9" : "#354F52" }}
           transition={{ duration: 0.3 }}
           style={{
-            width: "84px",
-            height: "40px",
+            width: isMobile ? "68px" : "84px",
+            height: isMobile ? "34px" : "40px",
             borderRadius: "24px",
           }}
         >
           <motion.div
-            animate={{ x: isLibrary ? 0 : 42 }}
+            animate={{ x: isLibrary ? 0 : isMobile ? 32 : 42 }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
-            className="bg-white rounded-full shadow-md"
-            style={{ width: "28px", height: "28px" }}
+            className="bg-white rounded-full shadow-sm"
+            style={{
+              width: isMobile ? "24px" : "28px",
+              height: isMobile ? "24px" : "28px"
+            }}
           />
         </motion.div>
-        <span className="text-[22px] font-medium text-[#354F52] min-w-[140px]">
+        <span className="text-[16px] md:text-[22px] font-medium text-[#354F52] min-w-[100px] md:min-w-[140px] text-left">
           {isLibrary ? "For Libraries" : "For Users"}
         </span>
       </div>
 
-      {/* 3. Infinite Carousel Area */}
+      {/* 3. Infinite Marquee Loop Track */}
       <div className="relative w-full overflow-hidden">
-        <motion.div 
-          className="flex gap-10"
+        <motion.div
+          className="flex gap-4 md:gap-10"
           animate={{ x: [0, -setWidth] }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 45, // Slightly slower for the more compact look
+              duration: isMobile ? 25 : 45, // Balances horizontal travel speeds across screens
               ease: "linear",
             },
           }}
@@ -117,32 +130,32 @@ const TestimonialSection = () => {
           {carouselData.map((item, index) => (
             <motion.div
               key={`${isLibrary ? "lib" : "user"}-${index}`}
-              className="bg-white border border-slate-200/50 shadow-[0_20px_60px_rgba(0,0,0,0.04)] p-10 flex flex-col gap-6 flex-shrink-0"
+              className="bg-white border border-slate-200/50 shadow-[0_12px_40px_rgba(0,0,0,0.03)] md:shadow-[0_20px_60px_rgba(0,0,0,0.04)] p-5 md:p-10 flex flex-col gap-4 md:gap-6 flex-shrink-0 justify-center text-left"
               style={{
-                width: "620px", // Reduced width
-                height: "260px", // Reduced height
-                borderRadius: "32px",
+                width: `${cardWidth}px`,
+                height: isMobile ? "190px" : "260px",
+                borderRadius: isMobile ? "24px" : "32px",
               }}
             >
               {/* Card Top: Identity */}
-              <div className="flex items-center gap-5">
-                <div className="w-16 h-16 rounded-full overflow-hidden shadow-inner bg-slate-100 border-4 border-slate-50">
-                  <img 
-                    src={item.image} 
-                    alt={item.name} 
+              <div className="flex items-center gap-3 md:gap-5">
+                <div className="w-11 h-11 md:w-16 md:h-16 rounded-full overflow-hidden shadow-inner bg-slate-100 border-2 md:border-4 border-slate-50 flex-shrink-0">
+                  <img
+                    src={item.image}
+                    alt={item.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div>
-                  <h4 className="text-[22px] font-bold text-[#1A1A1A]">
+                <div className="overflow-hidden">
+                  <h4 className="text-[16px] md:text-[22px] font-bold text-[#1A1A1A] truncate leading-tight">
                     {item.name}
                   </h4>
-                  <p className="text-[16px] text-slate-500 font-medium">{item.role}</p>
+                  <p className="text-[13px] md:text-[16px] text-slate-500 font-medium truncate mt-0.5">{item.role}</p>
                 </div>
               </div>
 
-              {/* Card Bottom: Review */}
-              <p className="text-[18px] text-[#4A4A4A] leading-relaxed font-regular line-clamp-3">
+              {/* Card Bottom: Review Description text */}
+              <p className="text-[13.5px] md:text-[18px] text-[#4A4A4A] leading-relaxed font-regular line-clamp-3">
                 "{item.review}"
               </p>
             </motion.div>

@@ -35,7 +35,7 @@ const Hero = () => {
     logo12,
   ];
 
-  // Animation variants
+  // Animation variants for hero text elements
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,7 +58,7 @@ const Hero = () => {
 
   return (
     <section className="relative w-full min-h-[1000px] md:min-h-[1600px] bg-hero-gradient flex flex-col items-center pt-24 md:pt-38 px-6 overflow-hidden">
-      {/* 1. TOP TEXT CONTAINER */}
+      {/* 1. TOP TEXT & DIAGRAM CONTAINER */}
       <motion.div
         className="max-w-[737px] w-full text-center flex flex-col items-center"
         variants={containerVariants}
@@ -103,31 +103,27 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* <img
-            src={flow}
-            alt="Content Flow Diagram"
-            className="w-full h-auto"
-          /> */}
           <AnimatedContentFlow className="mt-8" />
         </motion.div>
       </motion.div>
 
       {/* 2. LOGO CONTAINER */}
-      <motion.div
-        className="mt-28 w-full max-w-[1200px] flex flex-col items-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <h2 className="text-white text-[18px] font-medium tracking-tight mb-16">
+      <div className="mt-28 w-full max-w-[1200px] flex flex-col items-center">
+        <h2 className="text-white text-[16px] md:text-[18px] font-medium tracking-tight mb-12 md:mb-16 text-center px-4">
           Trusted by companies across industries
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-12 gap-y-16 w-full items-center justify-items-center">
+        {/* === DESKTOP VERSION (100% Unchanged Layout) === */}
+        <motion.div
+          className="hidden md:grid grid-cols-3 lg:grid-cols-6 gap-x-12 gap-y-16 w-full items-center justify-items-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
           {logos.map((logo, index) => (
             <motion.img
-              key={index}
+              key={`desktop-${index}`}
               src={logo}
               alt={`Client logo ${index + 1}`}
               className="h-7 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
@@ -138,8 +134,30 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: index * 0.05 }}
             />
           ))}
+        </motion.div>
+
+        {/* === MOBILE VERSION (Clean, Edge-to-Edge Infinite Horizontal Marquee) === */}
+        <div className="relative w-screen block md:hidden overflow-hidden">
+          <motion.div
+            className="flex w-max gap-12 px-6 items-center"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              ease: "linear",
+              duration: 25,
+              repeat: Infinity,
+            }}
+          >
+            {[...logos, ...logos].map((logo, index) => (
+              <img
+                key={`mobile-${index}`}
+                src={logo}
+                alt={`Client logo mobile ${index + 1}`}
+                className="h-6 w-auto object-contain opacity-75 max-w-[110px]"
+              />
+            ))}
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

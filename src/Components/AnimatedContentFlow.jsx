@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const AnimatedContentFlow = ({ className }) => {
-  // Your exact path data for tracking
   // True centerlines for both the visual paths and the data particles
   const trackTop =
     "M49.3 82.2 C122.1 167.9 180.1 226.5 239.9 270.3 C300.7 314.7 363.3 343.8 445.0 370.3";
@@ -13,16 +12,15 @@ const AnimatedContentFlow = ({ className }) => {
     "M49.8 669.6 C122.5 581.5 180.5 521.1 240.6 475.8 C301.6 429.8 364.5 399.6 446.0 372.3";
 
   return (
-    <div className={`w-full max-w-[1100px] relative ${className || ""}`}>
+    <div className={`w-full max-w-[1100px] relative overflow-hidden aspect-[1124/724] ${className || ""}`}>
       <svg
-        width="1124"
-        height="724"
         viewBox="0 0 1124 724"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto drop-shadow-2xl"
+        className="w-full h-full drop-shadow-2xl"
         style={{ shapeRendering: "geometricPrecision" }}
       >
+        {/* MAIN BACKGROUND SHADOW */}
         <g filter="url(#filter0_d_2306_2576)">
           <path
             d="M23 43C23 31.9543 31.9543 23 43 23H1081C1092.05 23 1101 31.9543 1101 43V681C1101 692.046 1092.05 701 1081 701H43C31.9543 701 23 692.046 23 681V43Z"
@@ -30,22 +28,24 @@ const AnimatedContentFlow = ({ className }) => {
           />
         </g>
 
+        {/* BROWSER WINDOW DOTS */}
         <circle cx="49.6647" cy="48.7077" r="6.66473" fill="#F7655A" />
         <circle cx="73.8347" cy="48.7077" r="6.66473" fill="#F3D053" />
         <circle cx="98.3347" cy="48.7077" r="6.66473" fill="#62D06B" />
 
-        <foreignObject x="46" y="73" width="1032" height="605">
-          <div
-            xmlns="http://www.w3.org/1999/xhtml"
-            style={{
-              backdropFilter: "blur(10px)",
-              borderRadius: "20px",
-              height: "100%",
-              width: "100%",
-            }}
-          ></div>
-        </foreignObject>
+        {/* NATIVE SVG BACKGROUND BLUR (Replaced foreignObject) */}
+        <rect
+          x="46"
+          y="73"
+          width="1032"
+          height="605"
+          rx="20"
+          fill="#000000"
+          fillOpacity="0.05"
+          filter="url(#native_card_blur)"
+        />
 
+        {/* MAIN CANVAS GRADIENT CONTAINER */}
         <rect
           x="46"
           y="73"
@@ -93,7 +93,7 @@ const AnimatedContentFlow = ({ className }) => {
           fill="none"
         />
 
-        {/* ADDED MOTION: Refined dots following the paths above */}
+        {/* MOTION PARTICLES */}
         {[
           trackTop,
           trackMidTop,
@@ -108,7 +108,7 @@ const AnimatedContentFlow = ({ className }) => {
             style={{ offsetPath: `path("${path}")` }}
             animate={{ offsetDistance: ["0%", "100%"], opacity: [0, 1, 0] }}
             transition={{
-              duration: 6, // Slower movement
+              duration: 6,
               repeat: Infinity,
               ease: "linear",
               delay: i * 1.2,
@@ -116,18 +116,20 @@ const AnimatedContentFlow = ({ className }) => {
           />
         ))}
 
+        {/* CENTRAL HERO PILL BAR */}
         <g transform="translate(446, 335.293)">
-          <foreignObject x="-40" y="-40" width="320" height="160">
-            <div
-              xmlns="http://www.w3.org/1999/xhtml"
-              style={{
-                backdropFilter: "blur(20px)",
-                clipPath: "url(#bgblur_0_2312_2603_clip_path)",
-                height: "100%",
-                width: "100%",
-              }}
-            ></div>
-          </foreignObject>
+          {/* NATIVE SVG PILL BLUR (Replaced foreignObject) */}
+          <rect
+            x="1.5"
+            y="1.5"
+            width="237"
+            height="77"
+            rx="38.5"
+            fill="#000000"
+            fillOpacity="0.1"
+            filter="url(#native_pill_blur)"
+          />
+
           {/* Static Base Border */}
           <rect
             x="1.5"
@@ -141,6 +143,7 @@ const AnimatedContentFlow = ({ className }) => {
             strokeWidth="4"
             strokeOpacity="0.3"
           />
+
           {/* Animated Chase Motion - Moving Spotlight Technique */}
           <g mask="url(#border_track_mask)">
             <motion.circle
@@ -158,6 +161,8 @@ const AnimatedContentFlow = ({ className }) => {
               }}
             />
           </g>
+
+          {/* Core Branding Text */}
           <text
             x="120"
             y="41"
@@ -181,12 +186,21 @@ const AnimatedContentFlow = ({ className }) => {
         </g>
         <circle cx="446" cy="373.793" r="6" fill="white" />
 
-        {/* Connection Point Glow (Right Side) - Static */}
+        {/* Connection Point Glow (Right Side) */}
         <g filter="url(#filter0_f_2306_2509)">
           <circle cx="683" cy="372.293" r="11" fill="white" />
         </g>
 
+        {/* SYSTEM REFS & GLOW GRAPHICS CONFIG */}
         <defs>
+          {/* Responsive Glass Filter Specs */}
+          <filter id="native_card_blur" x="0%" y="0%" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="10" />
+          </filter>
+          <filter id="native_pill_blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="20" />
+          </filter>
+
           <filter
             id="filter0_d_2306_2576"
             x="0"
@@ -222,6 +236,7 @@ const AnimatedContentFlow = ({ className }) => {
               result="shape"
             />
           </filter>
+
           <motion.linearGradient
             id="output_flow_gradient"
             gradientUnits="userSpaceOnUse"
@@ -243,6 +258,7 @@ const AnimatedContentFlow = ({ className }) => {
             <stop offset="50%" stopColor="#D3F477" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.2" />
           </motion.linearGradient>
+
           <mask id="border_track_mask">
             <path
               d="M 40 1.5 H 200 A 38.5 38.5 0 0 1 200 78.5 H 40 A 38.5 38.5 0 0 1 40 1.5 Z"
@@ -251,11 +267,13 @@ const AnimatedContentFlow = ({ className }) => {
               strokeWidth="4"
             />
           </mask>
+
           <radialGradient id="chase_radial_gradient">
             <stop offset="0%" stopColor="#D3F477" stopOpacity="0.5" />
             <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.25" />
             <stop offset="100%" stopColor="#737373" stopOpacity="0" />
           </radialGradient>
+
           <filter
             id="filter0_f_2306_2509"
             x="665"
@@ -277,12 +295,7 @@ const AnimatedContentFlow = ({ className }) => {
               result="effect1_foregroundBlur_2306_2509"
             />
           </filter>
-          <clipPath
-            id="bgblur_0_2312_2603_clip_path"
-            transform="translate(40 40)"
-          >
-            <rect x="1.5" y="1.5" width="237" height="77" rx="38.5" />
-          </clipPath>
+
           <linearGradient
             id="paint0_linear_2312_2603"
             x1="24.5"
